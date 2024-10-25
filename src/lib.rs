@@ -1,4 +1,6 @@
 mod pb;
+use std::collections::HashMap;
+
 use pb::evm_contract_creation::v1::{ContractCreationInfo, EvmContractCreations};
 
 use substreams::{errors::Error, Hex};
@@ -51,9 +53,15 @@ pub fn db_out(map: EvmContractCreations) -> Result<DatabaseChanges, Error> {
     let mut db_out = DatabaseChanges::default();
 
     for event in map.data {
-        let pk = format!("{}-{}", event.block_hash, event.contract_address);
+        let pk = HashMap::from([
+            ("block_hash".to_string(), event.block_hash.clone()),
+            (
+                "contract_address".to_string(),
+                event.contract_address.clone(),
+            ),
+        ]);
         db_out
-            .push_change("contract_creation", pk.as_str(), 0, table_change::Operation::Create)
+            .push_change_composite("contract_creation", pk, 0, table_change::Operation::Create)
             .change("block_hash", ("", event.block_hash.to_string().as_str()))
             .change(
                 "block_number",
@@ -88,29 +96,19 @@ pub fn graph_out(map: EvmContractCreations) -> Result<EntityChanges, Error> {
     for event in map.data {
         let pk = format!("{}-{}", event.block_hash, event.contract_address);
         entity_changes
-            .push_change("contract_creation", pk.as_str(), 0, entity_change::Operation::Create)
+            .push_change(
+                "contract_creation",
+                pk.as_str(),
+                0,
+                entity_change::Operation::Create,
+            )
             .change("block_hash", event.block_hash.to_string())
-            .change(
-                "block_number",
-                event.block_number.to_string(),
-            )
-            .change(
-                "block_timestamp",
-                event.block_timestamp_seconds.to_string(),
-            )
-            .change(
-                "contract_address",
-                event.contract_address.to_string(),
-            )
-            .change(
-                "creator_address",
-                event.creator_address.to_string(),
-            )
+            .change("block_number", event.block_number.to_string())
+            .change("block_timestamp", event.block_timestamp_seconds.to_string())
+            .change("contract_address", event.contract_address.to_string())
+            .change("creator_address", event.creator_address.to_string())
             .change("creator_tx", event.creator_tx.to_string())
-            .change(
-                "creation_bytecode",
-                bytes_to_hex(&event.creation_bytecode),
-            );
+            .change("creation_bytecode", bytes_to_hex(&event.creation_bytecode));
     }
 
     Ok(entity_changes)
