@@ -68,7 +68,7 @@ pub fn db_out(map: EvmContractCreations) -> Result<DatabaseChanges, Error> {
                 ("", event.block_number.to_string().as_str()),
             )
             .change(
-                "block_timestamp",
+                "block_timestamp_seconds",
                 ("", event.block_timestamp_seconds.to_string().as_str()),
             )
             .change(
@@ -104,7 +104,7 @@ pub fn graph_out(map: EvmContractCreations) -> Result<EntityChanges, Error> {
             )
             .change("block_hash", event.block_hash.to_string())
             .change("block_number", event.block_number.to_string())
-            .change("block_timestamp", event.block_timestamp_seconds.to_string())
+            .change("block_timestamp_seconds", event.block_timestamp_seconds.to_string())
             .change("contract_address", event.contract_address.to_string())
             .change("creator_address", event.creator_address.to_string())
             .change("creator_tx", event.creator_tx.to_string())

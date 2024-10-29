@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS contract_creation
 (
     block_hash              String,
     block_number            UInt64,
-    block_timestamp_seconds Uint64,
+    block_timestamp_seconds UInt64,
     contract_address        String,
     creator_address         String,
     creator_tx              String,
