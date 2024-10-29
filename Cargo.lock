@@ -200,7 +200,7 @@ dependencies = [
 
 [[package]]
 name = "evm_contract_creation_tracker"
-version = "0.1.2"
+version = "0.1.3"
 dependencies = [
  "anyhow",
  "ethabi",

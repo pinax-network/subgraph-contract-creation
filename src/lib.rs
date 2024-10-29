@@ -30,7 +30,10 @@ fn map_contract_creation(blk: Block) -> EvmContractCreations {
 
     for trace in blk.transaction_traces {
         let input_data = trace.input;
-        if input_data.len() > 4 && input_data[0..4] == [0x60, 0x80, 0x60, 0x40] {
+        if input_data.len() > 5
+            && (input_data[0..5] == [0x60, 0x80, 0x60, 0x40, 0x52]
+                || input_data[0..5] == [0x60, 0x60, 0x60, 0x40, 0x52])
+        {
             let mut info = ContractCreationInfo::default();
 
             info.block_hash = ("0x".to_owned() + &block_hash).to_owned();
@@ -104,7 +107,10 @@ pub fn graph_out(map: EvmContractCreations) -> Result<EntityChanges, Error> {
             )
             .change("block_hash", event.block_hash.to_string())
             .change("block_number", event.block_number.to_string())
-            .change("block_timestamp_seconds", event.block_timestamp_seconds.to_string())
+            .change(
+                "block_timestamp_seconds",
+                event.block_timestamp_seconds.to_string(),
+            )
             .change("contract_address", event.contract_address.to_string())
             .change("creator_address", event.creator_address.to_string())
             .change("creator_tx", event.creator_tx.to_string())
