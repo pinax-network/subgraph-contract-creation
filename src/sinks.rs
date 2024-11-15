@@ -38,7 +38,7 @@ pub fn graph_out(map: Events) -> Result<EntityChanges, Error> {
     for event in map.data {
         let pk = format!("{}-{}", event.block_hash, event.contract_address);
         let row = entity_changes
-            .push_change("contract_creation", pk.as_str(), 0, entity_change::Operation::Create)
+            .push_change("ContractCreation", pk.as_str(), 0, entity_change::Operation::Create)
             // block
             .change("block_hash", event.block_hash.to_string())
             .change("block_number", event.block_number.to_string())
