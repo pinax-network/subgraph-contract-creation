@@ -1,4 +1,6 @@
 type Action @entity {
+    id:                      ID!
+
     # block
     block_hash:              String!
     block_number:            BigInt!

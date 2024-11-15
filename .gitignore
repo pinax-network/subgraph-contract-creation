@@ -3,6 +3,7 @@
 
 # Compiled source files
 target/
+build/
 
 # Sink data when running any sinker
 sink-data/
