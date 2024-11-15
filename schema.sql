@@ -19,13 +19,19 @@ CREATE TABLE IF NOT EXISTS cursors
 
 CREATE TABLE IF NOT EXISTS contract_creation
 (
+    -- block --
     block_hash              String,
     block_number            UInt64,
-    block_timestamp_seconds UInt64,
+    block_time              DateTime,
+    block_date              Date,
+
+    -- contract creation --
     contract_address        String,
+    creator_factory         String,
     creator_address         String,
     creator_tx              String,
-    creation_bytecode       String
+    code                    String,
+    -- init                    String, -- NOT IMPLEMENTED
 )
     ENGINE = ReplacingMergeTree()
         PRIMARY KEY (block_hash, contract_address)

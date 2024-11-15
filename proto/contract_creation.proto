@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package contract_creation.v1;
+
+message Events {
+  repeated ContractCreation data = 1;
+}
+
+message ContractCreation {
+  // block
+  string block_hash = 1;
+  uint64 block_number = 2;
+  int64 block_time = 3;
+  string block_date = 4;
+
+  // contract creation
+  string contract_address = 5;
+  string creator_address = 6;
+  string creator_factory = 7;
+  string creator_tx = 8;
+  string code = 9;
+  // string init = 10;
+}

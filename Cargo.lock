@@ -98,6 +98,18 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 
 [[package]]
+name = "contract_creation"
+version = "0.0.0"
+dependencies = [
+ "prost 0.13.3",
+ "prost-types 0.13.3",
+ "substreams",
+ "substreams-database-change",
+ "substreams-entity-change",
+ "substreams-ethereum",
+]
+
+[[package]]
 name = "cpufeatures"
 version = "0.2.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -196,25 +208,6 @@ dependencies = [
  "impl-serde",
  "primitive-types",
  "uint",
-]
-
-[[package]]
-name = "evm_contract_creation_tracker"
-version = "0.2.0"
-dependencies = [
- "anyhow",
- "ethabi",
- "getrandom",
- "hex-literal",
- "num-bigint",
- "num-traits",
- "prost 0.13.3",
- "prost-types 0.13.3",
- "regex",
- "substreams",
- "substreams-database-change",
- "substreams-entity-change",
- "substreams-ethereum",
 ]
 
 [[package]]

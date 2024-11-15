@@ -1,0 +1,15 @@
+type Action @entity {
+    # block
+    block_hash:              String!
+    block_number:            BigInt!
+    block_time:              BigInt!
+    block_date:              String!
+
+    # contract creation
+    contract_address:        String!
+    creator_address:         String!
+    creator_factory:         String!
+    creator_tx:              String!
+    code:                    String!
+    # init:                    String! # NOT IMPLEMENTED
+}

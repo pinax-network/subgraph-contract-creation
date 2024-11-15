@@ -1,6 +1,6 @@
 specVersion: v0.1.0
 package:
-  name: evm_contract_creation_tracker
+  name: contract_creation
   version: v0.2.0
 
 imports:
@@ -10,7 +10,7 @@ imports:
 
 protobuf:
   files:
-    - EVMContractCreation.proto
+    - contract_creation.proto
   importPaths:
     - ./proto
   excludePaths:
@@ -20,15 +20,16 @@ protobuf:
 binaries:
   default:
     type: wasm/rust-v1
-    file: ./target/wasm32-unknown-unknown/release/substreams.wasm
+    file: ./target/wasm32-unknown-unknown/release/contract_creation.wasm
 
 modules:
  - name: map_contract_creation
    kind: map
    inputs:
-   - source: sf.ethereum.type.v2.Block
+    - source: sf.substreams.v1.Clock
+    - source: sf.ethereum.type.v2.Block
    output :
-    type: proto:EVMContractCreation.v1.EVMContractCreations
+    type: proto:contract_creation.v1.Events
 
  - name: db_out
    kind: map
