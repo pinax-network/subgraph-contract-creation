@@ -1,4 +1,4 @@
-type Action @entity {
+type ContractCreation @entity {
     id:                      ID!
 
     # block
