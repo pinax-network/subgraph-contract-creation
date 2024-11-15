@@ -14,6 +14,8 @@ message ContractCreationInfo {
   uint64 block_timestamp_seconds = 3;
   string contract_address = 4;
   string creator_address = 5;
-  string creator_tx = 6;
-  bytes creation_bytecode = 7;
+  string creator_factory = 6;
+  string creator_tx = 7;
+  bytes contract_init_bytecode = 8;
+  bytes contract_bytecode = 9;
 }

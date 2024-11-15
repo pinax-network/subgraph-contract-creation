@@ -3,10 +3,10 @@ use std::collections::HashMap;
 
 use pb::evm_contract_creation::v1::{ContractCreationInfo, EvmContractCreations};
 
-use substreams::{errors::Error, Hex};
+use substreams::{errors::Error, log, Hex};
 use substreams_database_change::pb::database::{table_change, DatabaseChanges};
 use substreams_entity_change::pb::entity::{entity_change, EntityChanges};
-use substreams_ethereum::pb::eth::v2::Block;
+use substreams_ethereum::pb::eth::v2::{Block, CallType};
 
 #[allow(unused_imports)]
 use num_traits::cast::ToPrimitive;
@@ -29,22 +29,27 @@ fn map_contract_creation(blk: Block) -> EvmContractCreations {
     let block_timestamp = blk.timestamp_seconds();
 
     for trace in blk.transaction_traces {
-        let input_data = trace.input;
-        if input_data.len() > 5
-            && (input_data[0..5] == [0x60, 0x80, 0x60, 0x40, 0x52]
-                || input_data[0..5] == [0x60, 0x60, 0x60, 0x40, 0x52])
-        {
-            let mut info = ContractCreationInfo::default();
+        for call in trace.calls {
+            if call.call_type() == CallType::Create {
+                for code in call.code_changes {
+                    let mut info = ContractCreationInfo::default();
 
-            info.block_hash = ("0x".to_owned() + &block_hash).to_owned();
-            info.block_number = block_number;
-            info.block_timestamp_seconds = block_timestamp;
-            info.contract_address = bytes_to_hex(&trace.to);
-            info.creator_address = bytes_to_hex(&trace.from);
-            info.creator_tx = bytes_to_hex(&trace.hash);
-            info.creation_bytecode = input_data;
+                    info.block_hash = ("0x".to_owned() + &block_hash).to_owned();
+                    info.block_number = block_number;
+                    info.block_timestamp_seconds = block_timestamp;
+                    info.contract_address = bytes_to_hex(&code.address);
+                    info.creator_address = bytes_to_hex(&trace.from);
+                    info.creator_factory = if trace.to == code.address {
+                        "".to_string()
+                    } else {
+                        bytes_to_hex(&trace.to)
+                    };
+                    info.creator_tx = bytes_to_hex(&trace.hash);
+                    info.contract_bytecode = code.new_code;
 
-            contract_creation.data.push(info);
+                    contract_creation.data.push(info);
+                }
+            }
         }
     }
 
@@ -82,10 +87,18 @@ pub fn db_out(map: EvmContractCreations) -> Result<DatabaseChanges, Error> {
                 "creator_address",
                 ("", event.creator_address.to_string().as_str()),
             )
+            .change(
+                "creator_factory",
+                ("", event.creator_factory.to_string().as_str()),
+            )
             .change("creator_tx", ("", event.creator_tx.to_string().as_str()))
             .change(
-                "creation_bytecode",
-                ("", bytes_to_hex(&event.creation_bytecode).as_str()),
+                "contract_init_bytecode",
+                ("", bytes_to_hex(&event.contract_init_bytecode).as_str()),
+            )
+            .change(
+                "contract_bytecode",
+                ("", bytes_to_hex(&event.contract_bytecode).as_str()),
             );
     }
 
@@ -113,8 +126,13 @@ pub fn graph_out(map: EvmContractCreations) -> Result<EntityChanges, Error> {
             )
             .change("contract_address", event.contract_address.to_string())
             .change("creator_address", event.creator_address.to_string())
+            .change("creator_factory", event.creator_factory.to_string())
             .change("creator_tx", event.creator_tx.to_string())
-            .change("creation_bytecode", bytes_to_hex(&event.creation_bytecode));
+            .change(
+                "contract_init_bytecode",
+                bytes_to_hex(&event.contract_init_bytecode),
+            )
+            .change("contract_bytecode", bytes_to_hex(&event.contract_bytecode));
     }
 
     Ok(entity_changes)

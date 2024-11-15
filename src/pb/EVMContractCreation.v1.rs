@@ -20,8 +20,12 @@ pub struct ContractCreationInfo {
     #[prost(string, tag="5")]
     pub creator_address: ::prost::alloc::string::String,
     #[prost(string, tag="6")]
+    pub creator_factory: ::prost::alloc::string::String,
+    #[prost(string, tag="7")]
     pub creator_tx: ::prost::alloc::string::String,
-    #[prost(bytes="vec", tag="7")]
-    pub creation_bytecode: ::prost::alloc::vec::Vec<u8>,
+    #[prost(bytes="vec", tag="8")]
+    pub contract_init_bytecode: ::prost::alloc::vec::Vec<u8>,
+    #[prost(bytes="vec", tag="9")]
+    pub contract_bytecode: ::prost::alloc::vec::Vec<u8>,
 }
 // @@protoc_insertion_point(module)
