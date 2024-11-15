@@ -43,7 +43,7 @@ modules:
    inputs:
    - map: map_contract_creation
    output:
-    type: proto:sf.substreams.sink.database.v1.EntityChanges
+    type: proto:sf.substreams.sink.entity.v1.EntityChanges
 
 sink:
   module: db_out

@@ -14,4 +14,4 @@ protogen:
 
 .PHONY: gui
 gui:
-	substreams gui . -e eth.substreams.pinax.network:443 graph_out -s -10000 -t 0 --network mainnet
+	substreams gui . -e eth.substreams.pinax.network:443 graph_out -s 21186059 -t 21186069 --network mainnet

@@ -24,7 +24,7 @@ pub fn db_out(map: Events) -> Result<DatabaseChanges, Error> {
             .change("creator_address", ("", event.creator_address.to_string().as_str()))
             .change("creator_factory", ("", event.creator_factory.to_string().as_str()))
             .change("creator_tx", ("", event.creator_tx.to_string().as_str()))
-            // .change("init", ("", event.init.to_string().as_str())); // NOT IMPLEMENTED
+            // .change("init", ("", event.init.to_string().as_str())); // NOT IMPLEMENTED;
             .change("code", ("", event.code.to_string().as_str()));
     }
 
@@ -37,7 +37,7 @@ pub fn graph_out(map: Events) -> Result<EntityChanges, Error> {
 
     for event in map.data {
         let pk = format!("{}-{}", event.block_hash, event.contract_address);
-        entity_changes
+        let row = entity_changes
             .push_change("contract_creation", pk.as_str(), 0, entity_change::Operation::Create)
             // block
             .change("block_hash", event.block_hash.to_string())
@@ -48,9 +48,12 @@ pub fn graph_out(map: Events) -> Result<EntityChanges, Error> {
             .change("contract_address", event.contract_address.to_string())
             .change("creator_address", event.creator_address.to_string())
             .change("creator_factory", event.creator_factory.to_string())
-            .change("creator_tx", event.creator_tx.to_string())
+            .change("creator_tx", event.creator_tx.to_string());
+
+        if !event.code.is_empty() {
+            row.change("code", &event.code);
             // .change("init", event.init.to_string()) // NOT IMPLEMENTED
-            .change("code", &event.code);
+        }
     }
 
     Ok(entity_changes)

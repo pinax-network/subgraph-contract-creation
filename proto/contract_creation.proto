@@ -18,6 +18,6 @@ message ContractCreation {
   string creator_address = 6;
   string creator_factory = 7;
   string creator_tx = 8;
-  string code = 9;
+  optional string code = 9;
   // string init = 10;
 }

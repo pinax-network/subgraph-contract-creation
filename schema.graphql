@@ -10,6 +10,6 @@ type Action @entity {
     creator_address:         String!
     creator_factory:         String!
     creator_tx:              String!
-    code:                    String!
+    code:                    String
     # init:                    String! # NOT IMPLEMENTED
 }
