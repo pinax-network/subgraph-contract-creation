@@ -2,7 +2,7 @@ use std::collections::HashMap;
 
 use substreams::errors::Error;
 use substreams_database_change::pb::database::{table_change, DatabaseChanges};
-use substreams_entity_change::pb::entity::{entity_change, EntityChanges};
+use substreams_entity_change::{pb::entity::EntityChanges, tables::Tables};
 
 use crate::pb::contract_creation::v1::Events;
 
@@ -33,28 +33,28 @@ pub fn db_out(map: Events) -> Result<DatabaseChanges, Error> {
 
 #[substreams::handlers::map]
 pub fn graph_out(map: Events) -> Result<EntityChanges, Error> {
-    let mut entity_changes: EntityChanges = Default::default();
+    let mut tables = Tables::new();
 
     for event in map.data {
         let pk = format!("{}-{}", event.block_hash, event.contract_address);
-        let row = entity_changes
-            .push_change("ContractCreation", pk.as_str(), 0, entity_change::Operation::Create)
+        let row = tables
+            .create_row("ContractCreation", pk.as_str())
             // block
-            .change("block_hash", event.block_hash.to_string())
-            .change("block_number", event.block_number.to_string())
-            .change("block_time", event.block_time.to_string())
-            .change("block_date", event.block_date.to_string())
+            .set("block_hash", event.block_hash.to_string())
+            .set_bigint("block_number", &event.block_number.to_string())
+            .set_bigint("block_time", &event.block_time.to_string())
+            .set("block_date", event.block_date.to_string())
             // contract creation
-            .change("contract_address", event.contract_address.to_string())
-            .change("creator_address", event.creator_address.to_string())
-            .change("creator_factory", event.creator_factory.to_string())
-            .change("creator_tx", event.creator_tx.to_string());
+            .set("contract_address", event.contract_address.to_string())
+            .set("creator_address", event.creator_address.to_string())
+            .set("creator_factory", event.creator_factory.to_string())
+            .set("creator_tx", event.creator_tx.to_string());
 
         if !event.code.is_empty() {
-            row.change("code", &event.code);
-            // .change("init", event.init.to_string()) // NOT IMPLEMENTED
+            row.set("code", &event.code);
+            // .set("init", event.init.to_string()) // NOT IMPLEMENTED
         }
     }
 
-    Ok(entity_changes)
+    Ok(tables.to_entity_changes())
 }
