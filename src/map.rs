@@ -30,7 +30,7 @@ fn map_contract_creation(clock: Clock, block: Block) -> Events {
                         creator_address: bytes_to_hex(&trace.from),
                         creator_factory,
                         creator_tx: bytes_to_hex(&trace.hash),
-                        code: bytes_to_hex(&code.new_code),
+                        code: Some(bytes_to_hex(&code.new_code)),
                         // init // NOT IMPLEMENTED
                     });
                 }

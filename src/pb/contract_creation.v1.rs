@@ -28,7 +28,7 @@ pub struct ContractCreation {
     #[prost(string, tag="8")]
     pub creator_tx: ::prost::alloc::string::String,
     /// string init = 10;
-    #[prost(string, tag="9")]
-    pub code: ::prost::alloc::string::String,
+    #[prost(string, optional, tag="9")]
+    pub code: ::core::option::Option<::prost::alloc::string::String>,
 }
 // @@protoc_insertion_point(module)
