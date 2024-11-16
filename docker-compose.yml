@@ -66,19 +66,3 @@ services:
       GRAPH_NODE_CONFIG: /root/config.toml
     volumes:
      - ./config.toml:/root/config.toml
-
-  subgraph-deployer:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    depends_on:
-      - graph-node
-    environment:
-      # Necessary Graph Node environment variables for deployment
-      GRAPH_NODE_URL: 'http://graph-node:8020'
-      GRAPH_NODE_INDEXER: 'http://graph-node:8030'
-      IPFS_ENDPOINT: 'http://ipfs:5001'
-      ETH_RPC: https://eth.rpc.pinax.network/v1/${PINAX_KEY}/
-      SUBGRAPH_VERSION: 'v0.0.1'
-    working_dir: /app/subgraph-contract-creation/subgraphs/eth
-    command: ["make", "deploy"]
