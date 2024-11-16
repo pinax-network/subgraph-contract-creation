@@ -2,6 +2,7 @@ specVersion: v0.1.0
 package:
   name: contract_creation
   version: v0.2.0
+  image: logo.png
 
 imports:
   database_change: https://github.com/streamingfast/substreams-sink-database-changes/releases/download/v2.0.0/substreams-database-change-v2.0.0.spkg
