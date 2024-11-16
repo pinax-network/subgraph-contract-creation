@@ -1,6 +1,6 @@
 # Subgraph: `Contract Creation`
 
-> Subgraph to track smart contract creation events.
+> Tracks smart contract creation events.
 
 ## Data Includes
 
@@ -19,7 +19,9 @@
 
 | Chain | Subgraph ID |
 | ----- | ----------- |
-| Ethereum   | [`REPLACE_ME`](https://thegraph.com/explorer/subgraphs/REPLACE_ME?view=Query&chain=arbitrum-one) |
+| Ethereum   | [`EEWpgBNwW9TzJeHppqyGfRxeK6UuXErg3VVn6EoWjsuc`](https://thegraph.com/explorer/subgraphs/EEWpgBNwW9TzJeHppqyGfRxeK6UuXErg3VVn6EoWjsuc?view=Query&chain=arbitrum-one) |
+| Arbitrum One   | [`6w6xFpTo9HHKYYyL7d4HNDy28bG2fMNBiZLcwymoKwAh`](https://thegraph.com/explorer/subgraphs/6w6xFpTo9HHKYYyL7d4HNDy28bG2fMNBiZLcwymoKwAh?view=Query&chain=arbitrum-one) |
+| BNB   | [`7H7M2G2XSLBy7rzWcysC8DpCkEqJQNxMjUKFpgSgMCLc`](https://thegraph.com/explorer/subgraphs/7H7M2G2XSLBy7rzWcysC8DpCkEqJQNxMjUKFpgSgMCLc?view=Query&chain=arbitrum-one) |
 
 ## GraphQL
 
@@ -78,4 +80,11 @@ Kind: map
 Input: map: map_contract_creation
 Output Type: proto:sf.substreams.sink.entity.v1.EntityChanges
 Hash: e148d3545043518d7b1072f941c33e0b69a6c0cb
+```
+
+## Subgraph deployment
+
+```bash
+graph indexer rules prepare --network arbitrum-one <Qm>
+graph indexer allocations create <Qm> arbitrum-one 100
 ```

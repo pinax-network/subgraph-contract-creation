@@ -1,5 +1,5 @@
 specVersion: 1.1.0
-description: Ethereum Contract Creation
+description: Contract Creation Arbitrum One
 repository: https://github.com/pinax-network/subgraph-contract-creation
 schema:
   file: ../../schema.graphql
