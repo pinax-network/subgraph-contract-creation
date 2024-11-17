@@ -1,0 +1,13 @@
+{
+  "name": "contract-creation-bnb",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "graph build",
+    "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ contract-creation-bnb",
+    "create-local": "graph create --node http://localhost:8020/ contract-creation-bnb",
+    "remove-local": "graph remove --node http://localhost:8020/ contract-creation-bnb",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 contract-creation-bnb",
+    "test": "graph test"
+  },
+  "dependencies": { "@graphprotocol/graph-cli": "0.81.0" }
+}
