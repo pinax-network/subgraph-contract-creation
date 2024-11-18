@@ -34,7 +34,7 @@ subgraph-build-%:
 
 	@if [ "$*" = "all" ]; then \
 		echo "Building ALL subgraphs $(VALID_TARGETS)..."; \
-		make subgraph-build-$(SUBDIRS); \
+		make $(addprefix subgraph-build-, $(SUBDIRS)); \
 	elif [ ! -d "$(TARGET)" ]; then \
 		echo "'$*' is not a valid subgraph target. Valid targets are $(VALID_TARGETS)."; \
 	else \
