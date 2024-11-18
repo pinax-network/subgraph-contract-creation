@@ -2,14 +2,50 @@
 
 > Tracks smart contract creation events.
 
+## Build
+
+### Docker
+
+```bash
+docker build -t subgraph-contract-creation
+docker run -it subgraph-contract-creation
+```
+
+### Local
+
+> [!IMPORTANT]
+> Requires [`substreams`](https://github.com/streamingfast/substreams/releases/latest), [`buf`](https://buf.build/product/cli) and [`graph`](https://github.com/graphprotocol/graph-tooling/releases/latest) CLIs installed as well as [Rust](https://rustup.rs/) with [`wasm32-unknown-unknown` target](https://doc.rust-lang.org/beta/rustc/platform-support/wasm32-unknown-unknown.html#building-rust-programs).
+
+```bash
+make [all]
+```
+
+#### Contract creation substream
+
+```bash
+make spkg-build
+```
+
+#### Contract creation block index
+
+```bash
+make block-index
+```
+
+#### Subgraphs
+
+```bash
+make subgraph-build-[mainnet|...|all]
+```
+
 ## Data Includes
 
 - [x] Contract Address
 - [x] Creator Address
 - [x] Creator Factory
 - [x] Creator Transaction Hash
-- [x] Code
-- [ ] Init
+- [x] Contract Code
+- [ ] Contract Init bytecode
 
 ## Subgraphs
 
@@ -19,9 +55,9 @@
 
 | Chain | Subgraph ID |
 | ----- | ----------- |
-| Ethereum   | [`EEWpgBNwW9TzJeHppqyGfRxeK6UuXErg3VVn6EoWjsuc`](https://thegraph.com/explorer/subgraphs/EEWpgBNwW9TzJeHppqyGfRxeK6UuXErg3VVn6EoWjsuc?view=Query&chain=arbitrum-one) |
-| Arbitrum One   | [`6w6xFpTo9HHKYYyL7d4HNDy28bG2fMNBiZLcwymoKwAh`](https://thegraph.com/explorer/subgraphs/6w6xFpTo9HHKYYyL7d4HNDy28bG2fMNBiZLcwymoKwAh?view=Query&chain=arbitrum-one) |
-| BNB   | [`7H7M2G2XSLBy7rzWcysC8DpCkEqJQNxMjUKFpgSgMCLc`](https://thegraph.com/explorer/subgraphs/7H7M2G2XSLBy7rzWcysC8DpCkEqJQNxMjUKFpgSgMCLc?view=Query&chain=arbitrum-one) |
+| [Ethereum](subgraphs/mainnet/)   | [`EEWpgBNwW9TzJeHppqyGfRxeK6UuXErg3VVn6EoWjsuc`](https://thegraph.com/explorer/subgraphs/EEWpgBNwW9TzJeHppqyGfRxeK6UuXErg3VVn6EoWjsuc?view=Query&chain=arbitrum-one) |
+| [Arbitrum One](subgraphs/arbitrum-one/)   | [`6w6xFpTo9HHKYYyL7d4HNDy28bG2fMNBiZLcwymoKwAh`](https://thegraph.com/explorer/subgraphs/6w6xFpTo9HHKYYyL7d4HNDy28bG2fMNBiZLcwymoKwAh?view=Query&chain=arbitrum-one) |
+| [BNB](subgraphs/bsc/)   | [`7H7M2G2XSLBy7rzWcysC8DpCkEqJQNxMjUKFpgSgMCLc`](https://thegraph.com/explorer/subgraphs/7H7M2G2XSLBy7rzWcysC8DpCkEqJQNxMjUKFpgSgMCLc?view=Query&chain=arbitrum-one) |
 
 ## GraphQL
 
