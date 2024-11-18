@@ -2,13 +2,14 @@ specVersion: v0.1.0
 package:
   name: contract_creation
   url: https://github.com/pinax-network/subgraph-contract-creation
-  version: v0.2.0
+  version: v0.2.1
   image: logo.png
 
 imports:
   database_change: https://github.com/streamingfast/substreams-sink-database-changes/releases/download/v2.0.0/substreams-database-change-v2.0.0.spkg
   entity_change: https://github.com/streamingfast/substreams-sink-entity-changes/releases/download/v2.0.0/substreams-entity-change-v2.0.0.spkg
   sql: https://github.com/streamingfast/substreams-sink-sql/releases/download/protodefs-v1.0.7/substreams-sink-sql-protodefs-v1.0.7.spkg
+  block_index: ./block-index/contract-creation-block-index-v0.2.0.spkg
 
 protobuf:
   files:
@@ -29,7 +30,7 @@ modules:
    kind: map
    inputs:
     - source: sf.substreams.v1.Clock
-    - source: sf.ethereum.type.v2.Block
+    - map: block_index:map_block_index
    output :
     type: proto:contract_creation.v1.Events
 

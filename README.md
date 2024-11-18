@@ -49,11 +49,13 @@
 graph TD;
   map_contract_creation[map: map_contract_creation];
   sf.substreams.v1.Clock[source: sf.substreams.v1.Clock] --> map_contract_creation;
-  sf.ethereum.type.v2.Block[source: sf.ethereum.type.v2.Block] --> map_contract_creation;
+  block_index:map_block_index --> map_contract_creation;
   db_out[map: db_out];
   map_contract_creation --> db_out;
   graph_out[map: graph_out];
   map_contract_creation --> graph_out;
+  block_index:map_block_index[map: block_index:map_block_index];
+  sf.ethereum.type.v2.Block[source: sf.ethereum.type.v2.Block] --> block_index:map_block_index;
 ```
 
 ## Modules
@@ -63,23 +65,30 @@ Name: map_contract_creation
 Initial block: 0
 Kind: map
 Input: source: sf.substreams.v1.Clock
-Input: source: sf.ethereum.type.v2.Block
+Input: map: block_index:map_block_index
 Output Type: proto:contract_creation.v1.Events
-Hash: 55c8099c4dc52893720f63f99efb871920c88b01
+Hash: 18bfc7f7ae9c17af025cdf6a64e7808c4d9afa43
 
 Name: db_out
 Initial block: 0
 Kind: map
 Input: map: map_contract_creation
 Output Type: proto:sf.substreams.sink.database.v1.DatabaseChanges
-Hash: b09283b1a9800ede86e60f5c8ce34f3d8be8e484
+Hash: d8b19b08696ddb1c9d506f6bf87183646f18a743
 
 Name: graph_out
 Initial block: 0
 Kind: map
 Input: map: map_contract_creation
 Output Type: proto:sf.substreams.sink.entity.v1.EntityChanges
-Hash: e148d3545043518d7b1072f941c33e0b69a6c0cb
+Hash: e8a9a97db397c4c9803c65e35152bd7e796426a6
+
+Name: block_index:map_block_index
+Initial block: 0
+Kind: map
+Input: source: sf.ethereum.type.v2.Block
+Output Type: proto:sf.ethereum.type.v2.Block
+Hash: b0d44421a2658fe913898d3d612149adb2f41ef3
 ```
 
 ## Subgraph deployment

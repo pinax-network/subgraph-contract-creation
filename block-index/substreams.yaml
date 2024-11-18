@@ -1,0 +1,22 @@
+specVersion: v0.1.0
+package:
+  name: contract_creation_block_index
+  url: https://github.com/pinax-network/subgraph-contract-creation
+  version: v0.2.0
+  image: ../logo.png
+
+imports:
+  ethereum: https://github.com/streamingfast/firehose-ethereum/releases/download/v1.4.8/ethereum-v1.0.0.spkg
+
+binaries:
+  default:
+    type: wasm/rust-v1
+    file: ../target/wasm32-unknown-unknown/release/contract_creation.wasm
+
+modules:
+ - name: map_block_index
+   kind: map
+   inputs:
+    - source: sf.ethereum.type.v2.Block
+   output :
+    type: proto:sf.ethereum.type.v2.Block

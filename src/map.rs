@@ -39,3 +39,22 @@ fn map_contract_creation(clock: Clock, block: Block) -> Events {
     }
     events
 }
+
+// used for ./block-index substreams
+// this function will filter out all the transaction traces that are not contract creations
+// improves Substreams caching performance by reducing the amount of bytes that needs to be read
+#[substreams::handlers::map]
+fn map_block_index(block: Block) -> Block {
+    let mut indexed_block = Block::default();
+    indexed_block.code_changes = block.code_changes;
+
+    for trace in block.transaction_traces.into_iter() {
+        for call in trace.clone().calls {
+            if call.call_type() == CallType::Create {
+                indexed_block.transaction_traces.push(trace);
+                break;
+            }
+        }
+    }
+    indexed_block
+}
