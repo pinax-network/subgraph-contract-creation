@@ -41,11 +41,5 @@ RUN git clone https://github.com/pinax-network/subgraph-contract-creation.git
 # Set the working directory to the root of the cloned repository
 WORKDIR /app/subgraph-contract-creation
 
-# Run substreams build command in the root of the git repo
-RUN substreams build
-
-# Set the working directory to the eth subgraph folder
-WORKDIR /app/subgraph-contract-creation/subgraphs/eth
-
 # Run the make command on startup
 CMD ["make"]

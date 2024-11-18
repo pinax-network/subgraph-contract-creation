@@ -6,7 +6,7 @@ Improves Substreams caching performance by reducing the amount of bytes that nee
 
 ## How to use?
 
-Upate your `substreams.yaml` with the following:
+Update your `substreams.yaml` with the following:
 
 ```yaml
 imports:
