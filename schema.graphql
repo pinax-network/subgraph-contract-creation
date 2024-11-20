@@ -13,5 +13,5 @@ type ContractCreation @entity {
     creator_factory:         String!
     creator_tx:              String!
     code:                    String
-    # init:                    String! # NOT IMPLEMENTED
+    init:                    String
 }

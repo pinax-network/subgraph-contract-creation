@@ -24,7 +24,7 @@ pub fn db_out(map: Events) -> Result<DatabaseChanges, Error> {
             .change("creator_address", ("", event.creator_address.to_string().as_str()))
             .change("creator_factory", ("", event.creator_factory.to_string().as_str()))
             .change("creator_tx", ("", event.creator_tx.to_string().as_str()))
-            // .change("init", ("", event.init.to_string().as_str())); // NOT IMPLEMENTED;
+            .change("init", ("", event.init.unwrap().to_string().as_str()))
             .change("code", ("", event.code.unwrap().to_string().as_str()));
     }
 
@@ -51,8 +51,7 @@ pub fn graph_out(map: Events) -> Result<EntityChanges, Error> {
             .set("creator_tx", event.creator_tx.to_string());
 
         if !event.code.is_some() {
-            row.set("code", &event.code.unwrap().to_string());
-            // .set("init", event.init.to_string()) // NOT IMPLEMENTED
+            row.set("code", &event.code.unwrap().to_string()).set("init", event.init.unwrap().to_string());
         }
     }
 

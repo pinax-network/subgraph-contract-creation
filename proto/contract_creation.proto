@@ -19,5 +19,5 @@ message ContractCreation {
   string creator_factory = 7;
   string creator_tx = 8;
   optional string code = 9;
-  // string init = 10;
+  optional string init = 10;
 }
