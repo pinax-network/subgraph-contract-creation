@@ -2,7 +2,7 @@ specVersion: v0.1.0
 package:
   name: contract_creation
   url: https://github.com/pinax-network/subgraph-contract-creation
-  version: v0.2.1
+  version: v0.2.2
   image: logo.png
 
 imports:
