@@ -1,6 +1,5 @@
 .PHONY: all
 all:
-	make block-index
 	make spkg-build
 	make subgraph-build-all
 

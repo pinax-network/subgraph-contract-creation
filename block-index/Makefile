@@ -11,8 +11,8 @@ build:
 
 .PHONY: cache
 cache:
-	substreams gui . -e arbone.substreams.pinax.network:443 map_block_index -s 0 -t 0 --network arbitrum-one --production-mode
+	substreams-sink-noop optimism.substreams.pinax.network:443 contract-creation-block-index-v0.2.0.spkg map_block_index 0:
 
 .PHONY: gui
 gui:
-	substreams gui . -e eth.substreams.pinax.network:443 map_block_index -s 21186059 -t 21186069 --network mainnet
+	substreams gui contract-creation-block-index-v0.2.0.spkg -e optimism.substreams.pinax.network:443 map_block_index -s 128205467 -t 128245467 --network optimism
