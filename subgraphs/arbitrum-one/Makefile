@@ -18,6 +18,10 @@ deploy:
 		graph deploy contract_creation --version-label=$(shell git describe --tags --abbrev=0);
 	fi
 
+.PHONY: cache
+cache:
+	substreams-sink-noop arbone.substreams.pinax.network:443 ../../ graph_out 0:
+
 .PHONY: publish
 publish:
 	make build
