@@ -10,7 +10,7 @@ dataSources:
     name: contract_creation
     network: arbitrum-one
     source:
-      startBlock: 0
+      startBlock: 22208966
       package:
         moduleName: graph_out
         file: ../../contract-creation-v0.3.0.spkg

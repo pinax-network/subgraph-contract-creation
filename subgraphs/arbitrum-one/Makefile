@@ -14,7 +14,7 @@ deploy:
 
 .PHONY: cache
 cache:
-	substreams-sink-noop arbone.substreams.pinax.network:443 ../../ graph_out 0:
+	substreams-sink-noop arbone.substreams.pinax.network:443 ../../ graph_out 22208966:
 
 .PHONY: publish
 publish:
