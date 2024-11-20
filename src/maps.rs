@@ -2,7 +2,7 @@ use substreams::{errors::Error, pb::substreams::Clock};
 use substreams_ethereum::pb::eth::v2::{Block, CallType};
 
 use crate::{
-    pb::contract_creation::v1::{ContractCreation, Events},
+    pb::contract_creation::{ContractCreation, Events},
     utils::{bytes_to_hex, to_date, to_month},
 };
 
@@ -59,6 +59,7 @@ fn map_contract_creation(clock: Clock, block: Block) -> Result<Events, Error> {
 #[substreams::handlers::map]
 fn map_block_index(block: Block) -> Result<Block, Error> {
     let mut indexed_block = Block::default();
+    indexed_block.header = block.header;
     indexed_block.code_changes = block.code_changes;
 
     for trace in block.transaction_traces.into_iter() {

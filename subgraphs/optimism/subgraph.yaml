@@ -13,7 +13,7 @@ dataSources:
       startBlock: 105239153
       package:
         moduleName: graph_out
-        file: ../../contract-creation-v0.2.2.spkg
+        file: ../../contract-creation-v0.3.0.spkg
 
     mapping:
       kind: substreams/graph-entities

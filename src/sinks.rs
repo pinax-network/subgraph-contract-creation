@@ -1,7 +1,7 @@
 use substreams::errors::Error;
 use substreams_entity_change::{pb::entity::EntityChanges, tables::Tables};
 
-use crate::pb::contract_creation::v1::Events;
+use crate::pb::contract_creation::Events;
 
 #[substreams::handlers::map]
 pub fn graph_out(map: Events) -> Result<EntityChanges, Error> {

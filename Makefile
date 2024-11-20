@@ -15,8 +15,8 @@ protogen:
 
 .PHONY: gui
 gui:
-	substreams gui . -e eth.substreams.pinax.network:443 map_contract_creation -s 20444295 --network mainnet
+	substreams gui . -e optimism.substreams.pinax.network:443 map_contract_creation -s 128245467 --network optimism
 
 .PHONY: parquet
 parquet:
-	substreams-sink-files run eth.substreams.pinax.network:443 substreams.yaml map_contract_creation './out' 20444295:20444795 --encoder parquet --file-block-count 100 --development-mode
+	substreams-sink-files run optimism.substreams.pinax.network:443 substreams.yaml map_contract_creation './out' 128245467:128255467 --encoder parquet --file-block-count 100 --development-mode

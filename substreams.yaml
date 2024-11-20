@@ -2,12 +2,12 @@ specVersion: v0.1.0
 package:
   name: contract_creation
   url: https://github.com/pinax-network/subgraph-contract-creation
-  version: v0.2.2
+  version: v0.3.0
   image: logo.png
 
 imports:
   entity_change: https://github.com/streamingfast/substreams-sink-entity-changes/releases/download/v2.0.0/substreams-entity-change-v2.0.0.spkg
-  block_index: ./block-index/contract-creation-block-index-v0.2.0.spkg
+  block_index: ./block-index/contract-creation-block-index-v0.3.0.spkg
 
 protobuf:
   files:

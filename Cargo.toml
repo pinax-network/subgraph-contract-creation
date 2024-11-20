@@ -1,17 +1,18 @@
 [package]
 name = "contract_creation"
-version = "0.2.1"
+version = "0.0.0"
 edition = "2021"
+publish = false
 
 [lib]
 crate-type = ["cdylib"]
 
 [dependencies]
-prost = "0.13.3"
-prost-types = "0.13.3"
 substreams = "0.6.0"
 substreams-ethereum = "0.10.0"
 substreams-entity-change = "2.0.0"
+prost = "0.13.3"
+prost-types = "0.13.3"
 
 [profile.release]
 lto = true

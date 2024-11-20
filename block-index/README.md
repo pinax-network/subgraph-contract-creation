@@ -38,5 +38,5 @@ Initial block: 0
 Kind: map
 Input: source: sf.ethereum.type.v2.Block
 Output Type: proto:sf.ethereum.type.v2.Block
-Hash: b0d44421a2658fe913898d3d612149adb2f41ef3
+Hash: 6c09d386577f8c62fe1b3f1cf50622bb0f08a48a
 ```

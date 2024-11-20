@@ -1,5 +1,6 @@
 # Environment files
 *.env
+out
 
 # Compiled source files
 target/
