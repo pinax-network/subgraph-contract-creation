@@ -14,7 +14,7 @@ deploy:
 
 .PHONY: cache
 cache:
-	substreams-sink-noop optimism.substreams.pinax.network:443 ../../ graph_out 0:
+	substreams-sink-noop optimism.substreams.pinax.network:443 ../../ graph_out 105239153:
 
 .PHONY: publish
 publish:

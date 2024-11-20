@@ -8,15 +8,9 @@ build:
 
 .PHONY: deploy
 deploy:
-	make build
-	graph create contract_creation
-	
-	if [ -z "$(SUBGRAPH_VERSION)" ]; then \
-		graph deploy contract_creation --version-label=$(SUBGRAPH_VERSION);
-	else \
-		echo "Getting version from git tag: $(shell git describe --tags --abbrev=0)"; \
-		graph deploy contract_creation --version-label=$(shell git describe --tags --abbrev=0);
-	fi
+	graph build
+	graph create --node=http://localhost:8020 contract_creation
+	graph deploy --node=http://localhost:8020 contract_creation
 
 .PHONY: cache
 cache:
