@@ -14,3 +14,7 @@ data/
 
 # Log files
 *.log
+state.yaml
+
+# Cached files
+!block-index/*.spkg
