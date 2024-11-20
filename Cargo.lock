@@ -104,7 +104,6 @@ dependencies = [
  "prost 0.13.3",
  "prost-types 0.13.3",
  "substreams",
- "substreams-database-change",
  "substreams-entity-change",
  "substreams-ethereum",
 ]
@@ -903,17 +902,6 @@ dependencies = [
  "prost-types 0.13.3",
  "substreams-macro",
  "thiserror",
-]
-
-[[package]]
-name = "substreams-database-change"
-version = "2.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "06fe88d25f4c3d56fc2a92583708dc34822ea99fb3f96609f9d684f717974b27"
-dependencies = [
- "prost 0.13.3",
- "prost-types 0.13.3",
- "substreams",
 ]
 
 [[package]]

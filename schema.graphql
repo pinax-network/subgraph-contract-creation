@@ -1,17 +1,27 @@
 type ContractCreation @entity {
+    # contract creation
+    address:                String!
+    deployer:               String!
+    code:                   String
+    code_hash:              String
+    from:                   String!
+    to:                     String!
+    factory:                String
+    input:                  String
+    ordinal:                BigInt!
+
+    # primary key
     id:                      ID!
 
     # block
     block_hash:              String!
     block_number:            BigInt!
-    block_time:              BigInt!
+    block_time:              BigInt! # seconds since epoch
     block_date:              String!
+    block_month:             String!
 
-    # contract creation
-    contract_address:        String!
-    creator_address:         String!
-    creator_factory:         String!
-    creator_tx:              String!
-    code:                    String
-    init:                    String
+    # transaction
+    transaction_hash:        String!
+    transaction_index:       BigInt!
 }
+

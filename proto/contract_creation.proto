@@ -2,22 +2,32 @@ syntax = "proto3";
 
 package contract_creation.v1;
 
+import "google/protobuf/timestamp.proto";
+
 message Events {
-  repeated ContractCreation data = 1;
+  repeated ContractCreation contract_creations = 1;
 }
 
 message ContractCreation {
-  // block
-  string block_hash = 1;
-  uint64 block_number = 2;
-  int64 block_time = 3;
+  // -- block --
+  google.protobuf.Timestamp block_time = 1;
+  string block_hash = 2;
+  uint64 block_number = 3;
   string block_date = 4;
+  string block_month = 5;
 
-  // contract creation
-  string contract_address = 5;
-  string creator_address = 6;
-  string creator_factory = 7;
-  string creator_tx = 8;
-  optional string code = 9;
-  optional string init = 10;
+  // -- transaction --
+  string transaction_hash = 6;
+  uint32 transaction_index = 7;
+
+  // -- contract creation --
+  uint64 ordinal = 8; // The block's global ordinal when the code change was recorded, refer to [Block] documentation for further information about ordinals and total ordering.
+  string address = 9;
+  string from = 10;
+  string to = 11;
+  string deployer = 12; // The address of the account that deployed the contract.
+  optional string factory = 13;
+  optional string code = 14;
+  optional string code_hash = 15;
+  optional string input = 16;
 }

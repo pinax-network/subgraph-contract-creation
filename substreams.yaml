@@ -6,9 +6,7 @@ package:
   image: logo.png
 
 imports:
-  database_change: https://github.com/streamingfast/substreams-sink-database-changes/releases/download/v2.0.0/substreams-database-change-v2.0.0.spkg
   entity_change: https://github.com/streamingfast/substreams-sink-entity-changes/releases/download/v2.0.0/substreams-entity-change-v2.0.0.spkg
-  sql: https://github.com/streamingfast/substreams-sink-sql/releases/download/protodefs-v1.0.7/substreams-sink-sql-protodefs-v1.0.7.spkg
   block_index: ./block-index/contract-creation-block-index-v0.2.0.spkg
 
 protobuf:
@@ -19,6 +17,7 @@ protobuf:
   excludePaths:
     - sf/substreams
     - google
+    - sf/ethereum
 
 binaries:
   default:
@@ -34,25 +33,9 @@ modules:
    output :
     type: proto:contract_creation.v1.Events
 
- - name: db_out
-   kind: map
-   inputs:
-   - map: map_contract_creation
-   output:
-    type: proto:sf.substreams.sink.database.v1.DatabaseChanges
-
  - name: graph_out
    kind: map
    inputs:
    - map: map_contract_creation
    output:
     type: proto:sf.substreams.sink.entity.v1.EntityChanges
-
-sink:
-  module: db_out
-  type: sf.substreams.sink.sql.v1.Service
-  config:
-    schema: "./schema.sql"
-    engine: clickhouse
-    postgraphile_frontend:
-      enabled: false

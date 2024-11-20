@@ -10,7 +10,7 @@ dataSources:
     name: contract_creation
     network: optimism
     source:
-      startBlock: 0
+      startBlock: 105239153
       package:
         moduleName: graph_out
         file: ../../contract-creation-v0.2.2.spkg
