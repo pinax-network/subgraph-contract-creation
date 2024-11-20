@@ -21,7 +21,7 @@
 | [Ethereum](subgraphs/mainnet/)   | [`EEWpgBNwW9TzJeHppqyGfRxeK6UuXErg3VVn6EoWjsuc`](https://thegraph.com/explorer/subgraphs/EEWpgBNwW9TzJeHppqyGfRxeK6UuXErg3VVn6EoWjsuc?view=Query&chain=arbitrum-one) |
 | [Arbitrum One](subgraphs/arbitrum-one/)   | [`6w6xFpTo9HHKYYyL7d4HNDy28bG2fMNBiZLcwymoKwAh`](https://thegraph.com/explorer/subgraphs/6w6xFpTo9HHKYYyL7d4HNDy28bG2fMNBiZLcwymoKwAh?view=Query&chain=arbitrum-one) |
 | [BNB](subgraphs/bsc/)   | [`7H7M2G2XSLBy7rzWcysC8DpCkEqJQNxMjUKFpgSgMCLc`](https://thegraph.com/explorer/subgraphs/7H7M2G2XSLBy7rzWcysC8DpCkEqJQNxMjUKFpgSgMCLc?view=Query&chain=arbitrum-one) |
-| [Optimism](subgraphs/optimism/)   | [`REPLACE_ME`](https://thegraph.com/explorer/subgraphs/REPLACE_ME?view=Query&chain=arbitrum-one) |
+| [Optimism](subgraphs/optimism/)   | [`7RdSF6qXBh1HPFD9A9QV6UvqKCZhrWCXAsGWnCYaWeWE`](https://thegraph.com/explorer/subgraphs/7RdSF6qXBh1HPFD9A9QV6UvqKCZhrWCXAsGWnCYaWeWE?view=Query&chain=arbitrum-one) |
 
 ## GraphQL
 

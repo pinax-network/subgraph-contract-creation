@@ -19,4 +19,4 @@ cache:
 .PHONY: publish
 publish:
 	graph build
-	graph publish --subgraph-id REPLACE_ME
+	graph publish --subgraph-id 7RdSF6qXBh1HPFD9A9QV6UvqKCZhrWCXAsGWnCYaWeWE
